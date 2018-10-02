@@ -1,4 +1,15 @@
 <?php
+use League\Uri;
+// ===================================================
+// Init composer autoload and enviroment variables
+// ===================================================
+require( dirname( __FILE__ ) . '/vendor/autoload.php' );
+
+$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv->load();
+
+$uri = Uri\Http::createFromServer($_SERVER);
+
 // ===================================================
 // Load database info and local development parameters
 // ===================================================
@@ -7,18 +18,17 @@ if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
 	include( dirname( __FILE__ ) . '/local-config.php' );
 } else {
 	define( 'WP_LOCAL_DEV', false );
-	define( 'DB_NAME', '%%DB_NAME%%' );
-	define( 'DB_USER', '%%DB_USER%%' );
-	define( 'DB_PASSWORD', '%%DB_PASSWORD%%' );
-	define( 'DB_HOST', '%%DB_HOST%%' ); // Probably 'localhost'
+	define( 'DB_NAME', getenv('DB_NAME') );
+	define( 'DB_USER', getenv('DB_USER')  );
+	define( 'DB_PASSWORD', getenv('DB_PASSWORD') );
+	define( 'DB_HOST', getenv('DB_HOST', 'localhost') );// Probably 'localhost'
 }
 
 // ========================
 // Custom Content Directory
 // ========================
 define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/content' );
-define( 'WP_CONTENT_URL', 'http://' . $_SERVER['HTTP_HOST'] . '/content' );
-
+define( 'WP_CONTENT_URL', $uri->withPath('/content')->withUserInfo(''));
 // ================================================
 // You almost certainly do not want to change these
 // ================================================
@@ -48,7 +58,7 @@ $table_prefix  = 'wp_';
 // Language
 // Leave blank for American English
 // ================================
-define( 'WPLANG', '' );
+define( 'WPLANG', 'ru_RU' );
 
 // ===========
 // Hide errors
