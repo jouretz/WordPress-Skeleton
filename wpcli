@@ -1,1 +1,1 @@
-../htdocs/vendor/wp-cli/wp-cli/bin/wp
+./vendor/wp-cli/wp-cli/bin/wp
