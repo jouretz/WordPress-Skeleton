@@ -1,0 +1,30 @@
+{
+    "name": "jouretz/wp_slim_skeleton",
+    "description": "empty project for integration slimframework into wordpress",
+    "type": "project",
+    "require": {
+        "slim/slim": "^3.0",
+        "php-di/slim-bridge": "^2.0",
+        "doctrine/annotations": "^1.6",
+        "ocramius/proxy-manager": "^2.2",
+        "vlucas/phpdotenv": "^2.5",
+        "league/uri": "^5.3",
+        "wp-cli/wp-cli": "^2.0",
+        "wp-cli/wp-cli-bundle": "^2.0",
+        "league/glide-slim": "^1.0",
+        "monolog/monolog": "^1.23"
+    },
+    "require-dev": {
+        "zeuxisoo/slim-whoops": "^0.6",
+        "symfony/var-dumper": "^4",
+        "slim/twig-view": "^2.4"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "urry",
+            "email": "jouretz@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
